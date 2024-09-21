@@ -1,0 +1,62 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+class Tarefa {
+    private String titulo;
+    private String descricao;
+
+    public Tarefa(String titulo, String descricao) {
+        this.titulo = titulo;
+        this.descricao = descricao;
+    }
+
+    public String getTitulo() {
+        return titulo;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+}
+public class GerenciadorTarefas {
+    public static void main(String[] args) {
+        List<Tarefa> listaTarefas = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\n=== Gerenciador de Tarefas ===");
+            System.out.println("1. Adicionar tarefa");
+            System.out.println("2. Listar tarefas");
+            System.out.println("3. Sair");
+            System.out.print("Escolha uma opção: ");
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Consumir a quebra de linha
+
+            switch (opcao) {
+                case 1:
+                    System.out.print("Digite o título da tarefa: ");
+                    String titulo = scanner.nextLine();
+                    System.out.print("Digite a descrição da tarefa: ");
+                    String descricao = scanner.nextLine();
+                    listaTarefas.add(new Tarefa(titulo, descricao));
+                    System.out.println("Tarefa adicionada com sucesso!");
+                    break;
+                case 2:
+                    System.out.println("\n=== Lista de Tarefas ===");
+                    for (Tarefa tarefa : listaTarefas) {
+                        System.out.println("Título: " + tarefa.getTitulo());
+                        System.out.println("Descrição: " + tarefa.getDescricao());
+                        System.out.println("------------------------");
+                    }
+                    break;
+                case 3:
+                    System.out.println("Encerrando o programa. Até mais!");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+            }
+        }
+    }
+}
